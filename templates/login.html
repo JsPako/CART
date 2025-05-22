@@ -1,11 +1,50 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CART - Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>CART - Login Page</title>
 </head>
 <body>
-<div>
-</div>
+    <div class="center">
+        <h1 class="title-text">CART</h1>
+        <div class="login-form">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="entry-field">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                </div>
+
+                <div class="entry-field">
+                {{ form.password.label_tag }}
+                {{ form.password}}
+                </div>
+
+                {% if form.is_bound and form.non_field_errors %}
+                    <div class="error-form show">
+                        {% for error in form.non_field_errors %}
+                            <span class="error-field">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="entry-field">
+                    <button class="login-button" type="submit">login</button>
+                </div>
+                <div class="link-field">
+                    <div class="link">
+                        <a href="/">forgot your password?</a>
+                    </div>
+                    <div class="link">
+                        <a href="/">create an account!</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

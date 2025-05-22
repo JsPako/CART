@@ -1,0 +1,44 @@
+:root{
+    --background: #F4F6FB;
+    --foreground: #F1F3F8;
+    --primary: #16C47F;
+    --secondary: #FFD65A;
+    --error: #F93827;
+    --text: #1C1C1C;
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --background: #1C1C1C;
+        --foreground: #222222;
+        --primary: #16C47F;
+        --secondary: #FF9D23;
+        --error: #D90429;
+        --text: #F4F6FB;
+    }
+}
+
+@font-face {
+    font-family: "NinetiesDisplay";
+    src: url("/static/fonts/NinetiesDisplay.otf") format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "TT-Tricks";
+    src: url("/static/fonts/TTTricks.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html{
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+    background-color: var(--background);
+    color: var(--text);
+}
