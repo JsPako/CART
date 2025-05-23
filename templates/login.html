@@ -4,47 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CART - Login</title>
+    <!--Links the required stylesheets,
+    with the base.css containing the global colour theme with light and dark themes,
+    and the login.css contains the element styling with responsive design for mobile.-->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <title>CART - Login Page</title>
 </head>
 <body>
-    <div class="center">
-        <h1 class="title-text">CART</h1>
-        <div class="login-form">
-            <form method="post">
-                {% csrf_token %}
+<!--The main container is centered vertically and horizontally,
+this container contains all the parts that make up the login page.-->
+<div class="center">
+    <!--The first part of the login page is the logo which is a heading with a stylised font.-->
+    <h1 class="title-text">CART</h1>
 
-                <div class="entry-field">
+    <!--The second part of the login page is the container that contains the login form,
+    and the links for password resets, and creation of new accounts.-->
+    <div class="login-form">
+        <form method="post">
+            <!--Prevention of cross site request forgery attacks.-->
+            {% csrf_token %}
+
+            <!--Containers with the required user input for account login.-->
+            <div class="entry-field">
                 {{ form.username.label_tag }}
                 {{ form.username }}
-                </div>
-
-                <div class="entry-field">
+            </div>
+            <div class="entry-field">
                 {{ form.password.label_tag }}
-                {{ form.password}}
-                </div>
+                {{ form.password }}
+            </div>
 
-                {% if form.is_bound and form.non_field_errors %}
-                    <div class="error-form show">
-                        {% for error in form.non_field_errors %}
-                            <span class="error-field">{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <div class="entry-field">
-                    <button class="login-button" type="submit">login</button>
+            <!--Hidden container which becomes visible to users when errors are detected on the login form.
+            The error messages are defined in forms.py, for invalid username or password, and for deactivated accounts.-->
+            {% if form.is_bound and form.non_field_errors %}
+                <div class="error-form show">
+                    {% for error in form.non_field_errors %}
+                        <span class="error-field">{{ error }}</span>
+                    {% endfor %}
                 </div>
-                <div class="link-field">
-                    <div class="link">
-                        <a href="/">forgot your password?</a>
-                    </div>
-                    <div class="link">
-                        <a href="/">create an account!</a>
-                    </div>
+            {% endif %}
+
+            <!--Container with the login button which submits the form for django authentication.-->
+            <div class="entry-field">
+                <button class="login-button" type="submit">login</button>
+            </div>
+
+            <!--Container with two redirection links for resetting passwords, and for creating a new account.-->
+            <div class="link-field">
+                <div class="link">
+                    <a href="{% url 'password_reset' %}">forgot your password?</a>
                 </div>
-            </form>
-        </div>
+                <div class="link">
+                    <a href="{% url 'register' %}">create an account!</a>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 </body>
 </html>

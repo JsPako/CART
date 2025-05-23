@@ -1,4 +1,8 @@
-:root{
+/* The base colours used for the automatic light and dark theming of the website,
+   the colours for the background, foreground (cards and elements with elevation),
+   text (contrast ratio of 15.35:1 to be complaint with WCAG AAA standards),
+   and primary, secondary, error (buttons, hover animations, success and error messages.) */
+:root {
     --background: #F4F6FB;
     --foreground: #F1F3F8;
     --primary: #16C47F;
@@ -7,8 +11,8 @@
     --text: #1C1C1C;
 }
 
-@media (prefers-color-scheme: dark){
-    :root{
+@media (prefers-color-scheme: dark) {
+    :root {
         --background: #1C1C1C;
         --foreground: #222222;
         --primary: #16C47F;
@@ -18,12 +22,21 @@
     }
 }
 
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+/* Load two fonts that are used throughout the website,
+   with the Nineties Display font utilised for the CART logo,
+   and the TT Tricks font is utilised for all of the body text. */
 @font-face {
     font-family: "NinetiesDisplay";
     src: url("/static/fonts/NinetiesDisplay.otf") format("opentype");
     font-weight: bold;
     font-style: normal;
 }
+
 @font-face {
     font-family: "TT-Tricks";
     src: url("/static/fonts/TTTricks.ttf") format("truetype");
@@ -31,14 +44,10 @@
     font-style: normal;
 }
 
-html{
+/* Configuring the behaviour of scrolling and text scaling for consistency across the website.*/
+html {
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-body{
-    background-color: var(--background);
-    color: var(--text);
 }
