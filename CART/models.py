@@ -13,10 +13,14 @@ class Profile(models.Model):
 class Vehicle(models.Model):
     registration = models.CharField(max_length=8, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=128)
     make = models.CharField(max_length=128)
     model = models.CharField(max_length=128)
     year = models.IntegerField()
-    nickname = models.CharField(max_length=128)
+    engine = models.CharField(max_length=128)
+    transmission = models.CharField(max_length=128)
+    mot = models.DateField()
+    insurance = models.DateField()
 
     def __str__(self):
         return f"VEHICLE REGISTRATION {self.registration}"
@@ -98,7 +102,9 @@ class Repair(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField()
     category = models.CharField(max_length=8, choices=CATEGORIES)
+    interval = models.IntegerField()
     completion = models.BooleanField()
+    completion_date = models.DateTimeField()
 
     def __str__(self):
         return f"REPAIR ID {self.number}"
