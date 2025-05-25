@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CART - Register</title>
+    <!--Links the required stylesheets,
+    with the base.css containing the global colour theme with light and dark themes,
+    and the login.css is reused for the registration page for design consistency.-->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+<!--The main container is centered vertically and horizontally,
+this container contains all the parts that make up the registration page.-->
+<div class="center">
+    <!--The first part of the registration page is the logo which is a heading with a stylised font.-->
+    <h1 class="title-text">CART</h1>
+
+    <!--The second part of the registration page is the container that contains the signup form,
+    which includes all the fields that the user needs to input to create a new account.-->
+    <div class="login-form">
+        <form method="post">
+            <!--Prevention of cross site request forgery attacks.-->
+            {% csrf_token %}
+
+            <!--Containers with the required user input for account login.-->
+            <div class="entry-field">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+            <div class="entry-field">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+            <div class="entry-field">
+                {{ form.display_name.label_tag }}
+                {{ form.display_name }}
+            </div>
+            <div class="entry-field">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+            </div>
+            <div class="entry-field">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+            </div>
+
+            <!--Hidden container which becomes visible to users when errors are detected in the signup form.
+            The error messages displayed are the password inputs not matching, the username already being in use,
+            or the email address not being correctly formatted.-->
+            {% if form.errors %}
+                <div class="error-form show">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <span class="error-field">{{ error }}</span>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+             <!--Container with the account creation button which submits the form for django account creation,
+             and creates a record in the Profile table that links usernames with display name.-->
+            <div class="entry-field">
+                <button class="login-button" type="submit">create account</button>
+            </div>
+
+            <!--Container with a redirection link back to the login page if the user already has an account.-->
+            <div class="link-field">
+                <div class="link">
+                    <a href="{% url 'login' %}">already have an account?</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
