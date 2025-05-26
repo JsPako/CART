@@ -25,6 +25,16 @@ this container contains all the parts that make up the login page.-->
             <!--Prevention of cross site request forgery attacks.-->
             {% csrf_token %}
 
+            <!--Hidden container which becomes visible to users when messages are detected on the login form.
+            The messages inform the user that a new account was created or that their password was successfully reset.-->
+            {% if messages %}
+                <div class="message-form show">
+                    {% for message in messages %}
+                        <span class="message-field">{{ message }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
             <!--Containers with the required user input for account login.-->
             <div class="entry-field">
                 {{ form.username.label_tag }}
