@@ -5,11 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CART - Login</title>
+
     <!--Links the required stylesheets,
     with the base.css containing the global colour theme with light and dark themes,
     and the login.css contains the element styling with responsive design for mobile.-->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+
+    <!--Links the favicon images and web manifest,
+    with light and dark mode definitions including compatibility with apple and android shortcut icons.-->
+    <meta name="apple-mobile-web-app-title" content="CART" />
+    <link rel="icon" sizes="96x96" type="image/png" href="{% static 'img/favicon-96x96.png' %}"/>
+    <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}"/>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}"/>
+    <link rel="manifest" href="{% static 'img/site.webmanifest' %}"/>
 </head>
 <body>
 <!--The main container is centered vertically and horizontally,
