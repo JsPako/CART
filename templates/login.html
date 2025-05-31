@@ -14,7 +14,6 @@
 
     <!--Links the favicon images and web manifest,
     with light and dark mode definitions including compatibility with apple and android shortcut icons.-->
-    <meta name="apple-mobile-web-app-title" content="CART" />
     <meta name="theme-color" content="#F4F6FB" media="{prefers-color-scheme: light}"/>
     <meta name="background-color" content="#F4F6FB" media="{prefers-color-scheme: light}"/>
     <meta name="theme-color" content="#1C1C1C" media="{prefers-color-scheme: dark}"/>
@@ -24,6 +23,13 @@
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}"/>
     <link rel="manifest" href="{% static 'img/site.webmanifest' %}"/>
+
+    <!--Apple progressive web app settings.-->
+    <meta name="apple-mobile-web-app-title" content="CART"/>
+    <meta name=”apple-mobile-web-app-capable” content=”yes”>
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" media="{prefers-color-scheme: light}"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"
+          media="{prefers-color-scheme: dark}"/>
 </head>
 <body>
 <!--The main container is centered vertically and horizontally,
