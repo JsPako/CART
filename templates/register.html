@@ -35,60 +35,59 @@
 <!--The main container is centered vertically and horizontally,
 this container contains all the parts that make up the registration page.-->
 <div class="center">
-    <!--The first part of the registration page is the logo which is a heading with a stylised font.-->
-    <h1 class="title-text">CART</h1>
 
-    <!--The second part of the registration page is the container that contains the signup form,
+    <!--The main part of the registration page is the container that contains the logo and signup form,
     which includes all the fields that the user needs to input to create a new account.-->
-    <div class="login-form">
+    <div class="form">
+        <!--The first part of the registration form is the logo which is a heading with a stylised font.-->
+        <h1 class="title-text">CART</h1>
+
         <form method="post">
             <!--Prevention of cross site request forgery attacks.-->
             {% csrf_token %}
-
-            <!--Containers with the required user input for account creation.-->
-            <div class="entry-field">
-                {{ form.username.label_tag }}
-                {{ form.username }}
-            </div>
-            <div class="entry-field">
-                {{ form.email.label_tag }}
-                {{ form.email }}
-            </div>
-            <div class="entry-field">
-                {{ form.display_name.label_tag }}
-                {{ form.display_name }}
-            </div>
-            <div class="entry-field">
-                {{ form.password1.label_tag }}
-                {{ form.password1 }}
-            </div>
-            <div class="entry-field">
-                {{ form.password2.label_tag }}
-                {{ form.password2 }}
-            </div>
 
             <!--Hidden container which becomes visible to users when errors are detected in the signup form.
             The error messages displayed are: the password inputs not matching, the username already being in use,
             or the email address not being correctly formatted.-->
             {% if form.errors %}
-                <div class="error-form show">
-                    {% for field, errors in form.errors.items %}
-                        {% for error in errors %}
-                            <span class="error-field">{{ error }}</span>
+                <div class="field">
+                    <ul class="field error-field"
+                        style="flex-direction: column; list-style-position: inside; gap: 0.25rem;">
+                        {% for errors in form.errors.values %}
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
                         {% endfor %}
-                    {% endfor %}
+                    </ul>
                 </div>
             {% endif %}
 
+            <!--Containers with the required user input for account creation.-->
+            <div class="field">
+                {{ form.username }}
+            </div>
+            <div class="field">
+                {{ form.email }}
+            </div>
+            <div class="field">
+                {{ form.display_name }}
+            </div>
+            <div class="field">
+                {{ form.password1 }}
+            </div>
+            <div class="field">
+                {{ form.password2 }}
+            </div>
+
             <!--Container with the account creation button which submits the form for django account creation,
             and creates a record in the Profile table that links usernames with display name.-->
-            <div class="entry-field">
-                <button class="login-button" type="submit">create account</button>
+            <div class="field">
+                <button class="field button" type="submit">create account</button>
             </div>
 
             <!--Container with a redirection link back to the login page if the user already has an account.-->
-            <div class="link-field">
-                <div class="link">
+            <div class="field">
+                <div class="field link">
                     <a href="{% url 'login' %}">already have an account?</a>
                 </div>
             </div>
