@@ -1,181 +1,175 @@
-.center{
+/* Centering behaviour for the main container that encloses all the elements on the page. */
+.center {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     min-height: 90vh;
 }
-.title-text{
-    text-align: center;
-    font-size: 10rem;
-    font-family: "NinetiesDisplay", serif;
-    margin: 1rem;
-}
 
-.login-form{
+/* A visually-elevated form container that encapsulates the logo and the user input elements. */
+.form {
     width: 100%;
-    padding: 2rem 2rem 0 2rem;
     max-width: 25rem;
-    margin: 0 auto;
+    padding: 2rem;
+    margin: 2rem;
+    border: 1px solid var(--background);
     border-radius: 1rem;
-    background: var(--foreground);
-    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.55);
-    border: 1px solid rgba(0, 0, 0, 0.26);
+    background: var(--background);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
 }
 
-.entry-field {
+/* Adjust the default font to use the selected stylised font family that is required for the logo,
+and adds a margin so that the forms do not get too close to the logo. */
+.title-text {
+    font-family: "NinetiesDisplay", serif;
+    font-size: 10rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 1rem 0;
+}
+
+/* Field container defines the default genetic style for each element in the form, defining the spacing and alignment.*/
+.field {
     display: flex;
+    box-sizing: border-box;
     align-items: center;
+    width: 100%;
+    max-width: 25rem;
     gap: 0.8rem;
     margin-bottom: 0.8rem;
-    width: 100%;
+    font-family: "TT-Tricks", serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
 }
-.entry-field label {
-    min-width: 100px;
+
+/* Entry field adds additional border and text styling for the user input elements present inside the form container.*/
+.entry-field {
+    background: var(--background);
+    border: 1px solid var(--foreground);
+    border-radius: 0.8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+    margin: 0;
+    padding: 0.6rem;
     color: var(--text);
-    font-size: 1.2rem;
-    font-family: "TT-Tricks", sans-serif;
-    text-align: left;
+    transition: border 0.2s,
+    transform 0.2s cubic-bezier(.25, 1.5, .5, 1);
+}
+
+/* Animation for the hover and focus states, scaling the field to grab the user's attention.*/
+.entry-field:hover {
+    border: 1px solid var(--secondary);
+    transform: scale(1.04);
+}
+
+.entry-field:focus {
+    border: 1px solid var(--primary);
+    transform: scale(1.02);
+    outline: none;
+}
+
+/* Force safari to style the entry field's placeholder consistently.*/
+.entry-field::placeholder {
+    font-family: "TT-Tricks", serif;
     text-transform: lowercase;
     letter-spacing: 1px;
 }
 
-.entry-field input {
-    flex: 1;
-    color: var(--text);
-    font-size: 1.1rem;
-    font-family: "TT-Tricks", serif;
-    letter-spacing: 1px;
-
-    padding: 0.6rem;
-    border-radius: 0.8rem;
-    border: 1px solid var(--foreground);
-    background: var(--background);
-    box-shadow: 0 1px 6px rgba(0,0,0,0.25), 0 1px 6px rgba(255,255,255,0.05);
-    transition:
-        border 0.2s,
-        transform 0.2s cubic-bezier(.25,1.5,.5,1);
-}
-
-.entry-field input:hover {
-    border: 1px solid var(--secondary);
-    transform: scale(1.04);
-}
-
-.entry-field input:focus {
-    border: 1px solid var(--primary);
-    transform: scale(1.04);
-    outline: none;
-}
-
-.login-button{
-    flex: 1;
-    color: #1C1C1C;
-    font-weight: bold;
-    font-size: 1.2rem;
-    font-family: "TT-Tricks", serif;
-    letter-spacing: 1px;
-    outline: none;
-    margin-top: 1rem;
-    padding: 0.6rem;
-    border-radius: 0.8rem;
-    background: var(--secondary);
-    box-shadow: 0 1px 6px rgba(0,0,0,0.25), 0 1px 6px rgba(255,255,255,0.05);
-    border: 1px solid var(--secondary);
-    transition:
-        background 0.2s,
-        border 0.2s,
-        transform 0.2s cubic-bezier(.25,1.5,.5,1);
-}
-
-.login-button:hover {
-    background: var(--primary);
-    border: 1px solid var(--primary);
-    transform: scale(1.04);
-}
-
-.login-button:focus {
-    background:var(--primary);
-    border: 1px solid var(--primary);
-    outline: none;
-}
-
-.error-form{
-    margin-top: 2rem;
-    padding: 0.5rem;
-    opacity: 0;
-    border-radius: 1rem;
-    background: var(--error);
-    max-width: 25rem;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.25);
-}
-
-.error-form.show {
-    opacity: 1;
-}
-
+/* Error field uses the same styling as entry field altering the background colour, and centering text.*/
 .error-field {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
+    background: var(--error);
+    border: 1px solid var(--error);
+    border-radius: 0.8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+    padding: 0.6rem;
     color: #F4F6FB;
-    font-size: 1.1rem;
-    font-family: "TT-Tricks", sans-serif;
-    letter-spacing: 1px;
     text-wrap: auto;
     text-align: center;
+    justify-content: center;
 }
 
-.link-field{
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 2rem;
+/* Message field uses the same styling as entry field altering the background colour, and centering text.*/
+.message-field {
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 0.8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+    padding: 0.6rem;
+    color: #1C1C1C;
+    text-wrap: auto;
+    text-align: center;
+    justify-content: center;
 }
 
+/* Buttons are styled to match the entry field however they use the traffic light primary and secondary colours,
+to inform the user if the button has been pressed or is waiting for input.*/
+.button {
+    background: var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 0.8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+    padding: 0.6rem;
+    color: #1C1C1C;
+    text-align: center;
+    justify-content: center;
+    font-weight: bold;
+    outline: none;
+    margin-top: 1.2rem;
+    transition: background 0.2s, border 0.2s,
+    transform 0.2s cubic-bezier(.25, 1.5, .5, 1);
+}
+
+/* Button animation for the hover and focus states, scaling the button to grab the user's attention,
+and changing colour to inform the user that the button was selected either through tab or press.*/
+.button:hover {
+    transform: scale(1.04);
+}
+
+.button:focus {
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    transform: scale(1.02);
+    outline: none;
+}
+
+/* Redirection links to other parts of the website with the links being automatically centered within the field container.*/
 .link {
-    flex: 1;
-    margin-top: 1.5rem;
+    justify-content: center;
 }
-.link a{
+
+/* The hyperlinks are stylised to remove the default behaviour of the blue and the purple colour,
+with the same hover animation to match the button and entry field.*/
+.link a {
     display: inline-block;
     text-decoration: none;
-    text-align: center;
     color: var(--text);
     font-size: 0.9rem;
-    font-family: "TT-Tricks", sans-serif;
-    text-transform: lowercase;
-    letter-spacing: 1px;
-    transition: transform 0.2s cubic-bezier(.25,1.5,.5,1);
+    transition: transform 0.2s cubic-bezier(.25, 1.5, .5, 1);
 }
 
-.link a:hover{
-    color: var(--primary);
+.link a:hover {
+    color: var(--secondary);
     transform: scale(1.04);
 }
 
 .link a:focus {
     color: var(--primary);
-    transform: scale(1.04);
+    transform: scale(1.02);
 }
 
+/* Mobile and Tablet scaling with the only requirements the horizontal scrollbar being hidden,
+and the logo being scaled down to match the smaller screens better,
+and finally the form container is resized to better fit.*/
 @media (max-width: 500px) {
-    body{
-        overflow: hidden;
+    body {
+        overflow-x: hidden;
     }
-    .title-text{
-        font-size: 8rem;
+
+    .title-text {
+        font-size: 25cqw;
     }
-    .login-form {
+
+    .form {
         max-width: 60vw;
-    }
-    .entry-field {
-        flex-direction: column;
-    }
-    .entry-field input, .login-button, .link-field {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
     }
 }

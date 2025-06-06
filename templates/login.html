@@ -35,12 +35,13 @@
 <!--The main container is centered vertically and horizontally,
 this container contains all the parts that make up the login page.-->
 <div class="center">
-    <!--The first part of the login page is the logo which is a heading with a stylised font.-->
-    <h1 class="title-text">CART</h1>
 
-    <!--The second part of the login page is the container that contains the login form,
+    <!--The login page is the container that contains the logo followed by the login form,
     and the links for password resets, and creation of new accounts.-->
-    <div class="login-form">
+    <div class="form">
+        <!--The first part of the login form is the logo which is a heading with a stylised font.-->
+        <h1 class="title-text">CART</h1>
+
         <form method="post">
             <!--Prevention of cross site request forgery attacks.-->
             {% csrf_token %}
@@ -48,44 +49,42 @@ this container contains all the parts that make up the login page.-->
             <!--Hidden container which becomes visible to users when messages are detected on the login form.
             The messages inform the user that a new account was created or that their password was successfully reset.-->
             {% if messages %}
-                <div class="message-form show">
+                <div class="field">
                     {% for message in messages %}
-                        <span class="message-field">{{ message }}</span>
+                        <p class="field message-field">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!--Hidden container which becomes visible to users when errors are detected on the login form.
+            The error messages are defined in forms.py, for invalid username or password, and for deactivated accounts.-->
+            {% if form.is_bound and form.non_field_errors %}
+                <div class="field">
+                    {% for error in form.non_field_errors %}
+                        <p class="field error-field">{{ error }}</p>
                     {% endfor %}
                 </div>
             {% endif %}
 
             <!--Containers with the required user input for account login.-->
-            <div class="entry-field">
-                {{ form.username.label_tag }}
+            <div class="field">
                 {{ form.username }}
             </div>
-            <div class="entry-field">
-                {{ form.password.label_tag }}
+            <div class="field">
                 {{ form.password }}
             </div>
 
-            <!--Hidden container which becomes visible to users when errors are detected on the login form.
-            The error messages are defined in forms.py, for invalid username or password, and for deactivated accounts.-->
-            {% if form.is_bound and form.non_field_errors %}
-                <div class="error-form show">
-                    {% for error in form.non_field_errors %}
-                        <span class="error-field">{{ error }}</span>
-                    {% endfor %}
-                </div>
-            {% endif %}
-
             <!--Container with the login button which submits the form for django authentication.-->
-            <div class="entry-field">
-                <button class="login-button" type="submit">login</button>
+            <div class="field">
+                <button class="field button" type="submit">login</button>
             </div>
 
             <!--Container with two redirection links for resetting passwords, and for creating a new account.-->
-            <div class="link-field">
-                <div class="link">
+            <div class="field">
+                <div class="field link">
                     <a href="{% url 'password_reset' %}">forgot your password?</a>
                 </div>
-                <div class="link">
+                <div class="field link">
                     <a href="{% url 'register' %}">create an account!</a>
                 </div>
             </div>
